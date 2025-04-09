@@ -1,0 +1,20 @@
+name: C Calculator CI
+
+on: [push, pull_request]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install GCC
+        run: sudo apt-get install -y gcc
+
+      - name: Compile calculator.c
+        run: gcc calculator.c -o calculator
+
+      - name: Run calculator (sample run with echo)
+        run: echo "+ 5 3" | ./calculator
